@@ -121,8 +121,10 @@ module.exports = function (opts) {
     opts = _.extend({hinting: true, trim: true}, opts);
 
     // prepare subset
-    var subsetText = util.getSubsetText(opts);
-    opts.subset = util.string2unicodes(subsetText);
+    if (!opts.subset) {
+        var subsetText = util.getSubsetText(opts);
+        opts.subset = util.string2unicodes(subsetText);
+    }
 
 
     return through.ctor({
